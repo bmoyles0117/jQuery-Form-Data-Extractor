@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>jQuery Form Data Extractor Example</title>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="jquery.extract_data.js"></script>
+		<script type="text/javascript">
+			var email_pattern = new RegExp(/^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i);
+
+			$(function() {
+				$('#example_form').submit(function() {
+					var post_data = $(this).extract_data();
+
+					if(!email_pattern.test(post_data.email_address)) {
+						alert("Invalid email address provided!");
+
+						return false;
+					}
+
+					// Run a post here, or simply let the form proceed...
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<form id="example_form">
+			<label>
+				Email Address
+				<br />
+				<input type="text" name="email_address" />
+			</label>
+		</form>
+	</body>
+</html>
